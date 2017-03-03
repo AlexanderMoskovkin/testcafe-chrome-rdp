@@ -1,0 +1,13 @@
+{
+  "name": "testcafe-chrome-rdp",
+  "version": "0.0.1",
+  "description": "Run TestCafe tests in Chrome with a device emulation",
+  "main": "run.js",
+  "author": "AlexanderMoskovkin (https://github.com/AlexanderMoskovkin)",
+  "license": "MIT",
+  "dependencies": {
+    "chrome-remote-interface": "^0.18.0",
+    "testcafe": "^0.13.0",
+    "testcafe-browser-tools": "^1.2.0"
+  }
+}
