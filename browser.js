@@ -27,6 +27,7 @@ const remoteDebuggingPort = 9225;
 exports.open = function (url) {
     let client    = null;
     let Emulation = null;
+    let Network   = null;
     let tab       = null;
 
     return getClient({ port: remoteDebuggingPort })
@@ -46,6 +47,7 @@ exports.open = function (url) {
         .then(cl => {
             client    = cl;
             Emulation = client.Emulation;
+            Network   = client.Network;
 
             Emulation.setDeviceMetricsOverride({
                 width:             320,
@@ -59,6 +61,14 @@ exports.open = function (url) {
             return Emulation.setTouchEmulationEnabled({
                 enabled:       true,
                 configuration: 'mobile'
+            });
+        })
+        .then(() => {
+            return Network.enable();
+        })
+        .then(() => {
+            return Network.setUserAgentOverride({
+                userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1'
             });
         })
         .then(() => {
